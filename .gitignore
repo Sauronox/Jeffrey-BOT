@@ -1,0 +1,6 @@
+.env
+.DS_Store
+package-lock.json
+log_chat.txt
+database.sqlite3
+settings.sqlite3
