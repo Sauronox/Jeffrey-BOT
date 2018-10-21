@@ -1,5 +1,5 @@
 require('dotenv').config()
-const Discord = require('discord.js');
+const {RichEmbed, Client} = require('discord.js');
 const Commando = require('discord.js-commando');
 const path = require('path');
 const fs = require('fs');
@@ -16,7 +16,10 @@ const {Game, ClientUser, Cient} = require('discord.js')
 console.log(points); */
 
 fs.readFile('./log_chat.txt', function (err, data) {
-	if (err) return fs.writeFile('log_chat.txt', '');
+	if (err) return fs.writeFile('log_chat.txt', '',function (err) {
+		if (err) throw err;
+		console.log('Saved!');
+	  });
 	console.log(data)
 console.log(data);
 });
@@ -28,7 +31,16 @@ client
 			let i = 0;
 			element.channels.forEach((channel)=>{
 				if(i == 0){
-					channel.send('Je suis de nouveau opérationnel, utiliser cdev help ou mentionner moi + help pour voir les commandes.');
+					client
+					const embed = new RichEmbed()
+					// Set the title of the field
+					.setTitle(':loudspeaker: Bot disponible')
+					// Set the color of the embed
+					.setColor('RANDOM')
+					// Set the main content of the embed
+					.setDescription('Pour utiliser le bot utiliser      '+client.commandPrefix+" help");
+
+					channel.send(embed);
 					console.log(channel.permissionOverwrites)
 					console.log('ID:'+channel.id+' | type : '+channel.type+' | name : '+channel.name+' | parent : '+channel.parent+' | client : '+channel.client)
 					console.log(JSON.stringify(channel))
@@ -46,7 +58,10 @@ client
 			if (err) {
 			   return console.error(err);
 			}
-			fs.writeFile('log_chat.txt', data+'\n'+formatLog.toString())
+			fs.writeFile('log_chat.txt', data+'\n'+formatLog.toString(),function (err) {
+				if (err) throw err;
+				console.log('Saved!');
+			  });
 
 		 });
     })

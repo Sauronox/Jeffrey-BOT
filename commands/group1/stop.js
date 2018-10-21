@@ -5,28 +5,19 @@ const ytdl = require('ytdl-core');
 module.exports = class ReplyCommand extends Command {
     constructor(client) {
         super(client, {
-            name: 'play',
+            name: 'stop',
             group: 'group1',
-            memberName: 'play',
-            description: 'Deconnecte le bot du cannal vocal',
-            examples: ['cdev play'],
-            args: [
-				{
-					key: 'song',
-					label: 'Song',
-					prompt: 'inssérer un lien pour jouer la piste audio',
-					type: 'string'
-				}
-			]
+            memberName: 'stop',
+            description: 'Stop la music en cours',
+            examples: ['cdev stop'],
         });
     }
     run(msg,{song}) {
         let channel = msg.channel;
         let author = msg.author;
-        const streamOptions = { seek: 0, volume: 1 };
         let voiceChannel  = msg.guild.voiceConnection
         if (voiceChannel == 'null') return msg.reply('I couldn\'t connect to your voice channel...');
-        let dispatcher = voiceChannel.playStream(ytdl(song, { audioonly: true }))
+        voiceChannel.dispatcher.end()
         return;
     }
 };
