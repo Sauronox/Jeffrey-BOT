@@ -5,9 +5,9 @@ module.exports = class ReplyCommand extends Command {
     constructor(client) {
         super(client, {
             name: 'help',
-            group: 'group1',
+            group: 'basic',
             memberName: 'help',
-            description: 'Tout les infor sur les commande du bot.',
+            description: 'Tout les info sur les commande du bot.',
             examples: ['help']
         });
     }

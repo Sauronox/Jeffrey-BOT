@@ -5,7 +5,7 @@ module.exports = class ReplyCommand extends Command {
     constructor(client) {
         super(client, {
             name: 'purge',
-            group: 'group1',
+            group: 'music',
             memberName: 'purge',
             description: 'Surpimme tout les message d\'un nombre donné.',
             examples: ['purge <Nombre> message'],

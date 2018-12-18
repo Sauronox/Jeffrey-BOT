@@ -1,6 +1,8 @@
 const { Command } = require('discord.js-commando');
 const {} = require('discord.js');
 const fs = require('fs');
+const opus = require('opusscript');
+const WitSpeech = require('node-witai-speech');
 
 function generateOutputFile(channel, member) {
     // use IDs instead of username cause some people have stupid emojis in their name
@@ -12,7 +14,7 @@ module.exports = class JoinCommand extends Command {
     constructor(client) {
         super(client, {
             name: 'join',
-            group: 'group1',
+            group: 'music',
             memberName: 'join',
             description: 'Connecte le bot au channel voal ou vous êtes',
             examples: ['cdev connect'],

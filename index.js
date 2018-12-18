@@ -1,4 +1,5 @@
 require('dotenv').config()
+const {} = require('discord.js');
 const {RichEmbed, Client} = require('discord.js');
 const Commando = require('discord.js-commando');
 const path = require('path');
@@ -25,13 +26,21 @@ console.log(data);
 });
 
 client
+	.on('emojiUpdate',(oldEmoji,newEmoji)=>{
+		console.log(` ${oldEmoji} -> ${newEmoji} `)
+	})
+	.on('messageReactionAdd',(messageReaction,user)=>{
+        console.log(user+"add reaction -> " ,messageReaction.message )
+	})
+    .on('messageReactionRemove',(messageReaction,user)=>{
+        console.log(user+"remove reaction -> " ,messageReaction.message )
+    })
     .on('ready', () => {
 		console.log(`Logged in as ${client.user.tag}!`);
 		client.guilds.forEach(element=>{
 			let i = 0;
 			element.channels.forEach((channel)=>{
 				if(i == 0){
-					client
 					const embed = new RichEmbed()
 					// Set the title of the field
 					.setTitle(':loudspeaker: Bot disponible')
@@ -40,7 +49,7 @@ client
 					// Set the main content of the embed
 					.setDescription('Pour utiliser le bot utiliser      '+client.commandPrefix+" help");
 
-					channel.send(embed);
+					//channel.send(embed);
 					console.log(channel.permissionOverwrites)
 					console.log('ID:'+channel.id+' | type : '+channel.type+' | name : '+channel.name+' | parent : '+channel.parent+' | client : '+channel.client)
 					console.log(JSON.stringify(channel))
@@ -108,7 +117,9 @@ client.setProvider(
 client.registry
     .registerDefaultTypes()
     .registerGroups([
-        ['group1', 'Our First Command Group']
+        ['music', 'Command for music or Speec with bot'],
+        ['basic', 'Basic command'],
+        ['fun', 'Futur RPG in bot'],
     ])
     .registerDefaultGroups()
     .registerDefaultCommands({help: false})

@@ -5,7 +5,7 @@ module.exports = class ReplyCommand extends Command {
     constructor(client) {
         super(client, {
             name: 'leave',
-            group: 'group1',
+            group: 'music',
             memberName: 'leave',
             description: 'Deconnecte le bot du cannal vocal',
             examples: ['cdev leave'],
